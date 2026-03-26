@@ -14,7 +14,7 @@ export const appErrorHandler=(err:AppError,req:Request,res:Response,next:NextFun
 export const genericErrorHandler=(err:AppError,req:Request,res:Response,next:NextFunction)=>{
     logger.error(`Error:${err.message}`)
 
-    return res.status(err.statusCode).json({
+    return res.status(err.statusCode||500).json({
        success:false,
        message:"Internal Server Error"
     })
