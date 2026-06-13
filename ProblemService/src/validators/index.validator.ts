@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import {ZodObject } from "zod";
+import {AnyZodObject } from "zod";
 import logger from "../config/logger.config";
 
 /**
@@ -7,7 +7,7 @@ import logger from "../config/logger.config";
  * @param schema - Zod schema to validate the request body
  * @returns - Middleware function to validate the request body
  */
-export const validateRequestBody = (schema:ZodObject) => {
+export const validateRequestBody = (schema:AnyZodObject) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
 
@@ -34,7 +34,7 @@ export const validateRequestBody = (schema:ZodObject) => {
  * @param schema - Zod schema to validate the request body
  * @returns - Middleware function to validate the request query params
  */
-export const validateQueryParams = (schema:ZodObject) => {
+export const validateQueryParams = (schema:AnyZodObject) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
 
@@ -55,7 +55,7 @@ export const validateQueryParams = (schema:ZodObject) => {
     }
 }
 
-export const validateRequestParams = (schema:ZodObject) => {
+export const validateRequestParams = (schema:AnyZodObject) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             await schema.parseAsync(req.params);
