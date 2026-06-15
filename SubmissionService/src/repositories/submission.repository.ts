@@ -28,7 +28,7 @@ export class SubmissionRepository implements ISubmissionRepository{
           return submission;
        }
         async findByProblemId(problemId: string): Promise<{submissions:ISubmission[],total:number}> {
-           const submissions=await Submission.find({ProblemId:problemId}).sort({createdAt:-1});
+           const submissions=await Submission.find({problemId}).sort({createdAt:-1});
            const total=await Submission.countDocuments({ProblemId:problemId});
 
            return {submissions,total};
