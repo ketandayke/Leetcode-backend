@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { AnyZodObject } from "zod";
-import logger from "../config/logger.config";
+import { logger } from "../config/logger.config";
 /**
  * 
  * @param schema - Zod schema to validate the request body

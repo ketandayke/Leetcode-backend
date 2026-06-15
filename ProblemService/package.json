@@ -1,6 +1,10 @@
 {
   "name": "problem-service",
   "version": "1.0.0",
+  "scripts": {
+    "start": "ts-node src/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
+  },
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
