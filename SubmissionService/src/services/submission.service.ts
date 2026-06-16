@@ -7,7 +7,7 @@ import { getProblemById } from "../apis/problem.api";
 interface ISubmissionService{
     createSubmission(submissionData:Partial<ISubmission>):Promise<ISubmission>,
     getSubmissionById(submissionId:string):Promise<ISubmission>,
-    getSubmissionByProblemId(submissionId:string):Promise<{submissions:ISubmission[],total:number}>,
+    getSubmissionsByProblemId(submissionId:string):Promise<{submissions:ISubmission[],total:number}>,
     deleteSubmission(submissionId:string):Promise<boolean>,
     updateSubmissionStatus(submissionId:string,status:string,submissionData:Partial<ISubmissionData>):Promise<ISubmission>
 }
@@ -57,7 +57,7 @@ export class SubmissionService implements ISubmissionService {
         return submission;
     }
 
-    async getSubmissionByProblemId(problemId:string):Promise<{submissions:ISubmission[],total:number}>{
+    async getSubmissionsByProblemId(problemId:string):Promise<{submissions:ISubmission[],total:number}>{
          const {submissions,total}=await this.submissionRepository.findByProblemId(problemId);
          if(!submissions || submissions.length===0){
             throw new NotFoundError(`No submissions found for problem with id ${problemId}`);

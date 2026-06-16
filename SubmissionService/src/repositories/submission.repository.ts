@@ -29,13 +29,17 @@ export class SubmissionRepository implements ISubmissionRepository{
        }
         async findByProblemId(problemId: string): Promise<{submissions:ISubmission[],total:number}> {
            const submissions=await Submission.find({problemId}).sort({createdAt:-1});
-           const total=await Submission.countDocuments({ProblemId:problemId});
+           const total=await Submission.countDocuments({problemId});
 
            return {submissions,total};
        }
 
        async updateStatus(submissionId:string,status:SubmissionStatus,submissionData:ISubmissionData):Promise<ISubmission|null>{
-            const submission=await Submission.findByIdAndUpdate(submissionId,{status,submissionData});
+            const submission=await Submission.findByIdAndUpdate(
+              submissionId,
+              {status,submissionData},
+              {new :true}
+              );
             if(!submission){
                 new NotFoundError(`Submission with id ${submissionId} not found`);
             }
