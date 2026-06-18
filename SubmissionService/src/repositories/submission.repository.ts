@@ -23,7 +23,7 @@ export class SubmissionRepository implements ISubmissionRepository{
        async findById(submissionId:string):Promise<ISubmission|null>{
           const submission=await Submission.findById(submissionId);
           if(!submission){
-            new NotFoundError(`Submission with id ${submissionId} not found`);
+            throw new NotFoundError(`Submission with id ${submissionId} not found`);
           }
           return submission;
        }
@@ -41,7 +41,7 @@ export class SubmissionRepository implements ISubmissionRepository{
               {new :true}
               );
             if(!submission){
-                new NotFoundError(`Submission with id ${submissionId} not found`);
+               throw new NotFoundError(`Submission with id ${submissionId} not found`);
             }
             return submission;
        }

@@ -144,3 +144,35 @@
 {"level":"info","message":"Server is running on http://localhost:3001","timestamp":"06-16-2026 12:58:03","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
 {"level":"info","message":"Press Ctrl+C to stop the server.","timestamp":"06-16-2026 12:58:03","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
 {"level":"info","message":"Connected to Redis server","timestamp":"06-16-2026 12:58:03","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Server is running on http://localhost:3001","timestamp":"06-16-2026 12:58:10","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Press Ctrl+C to stop the server.","timestamp":"06-16-2026 12:58:10","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Connected to Redis server","timestamp":"06-16-2026 12:58:10","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Fetching submissions by problem id","timestamp":"06-16-2026 12:58:43","correlationId":"71b2eb2f-8bb6-4476-aa3a-0f6b11438fbf","data":{"problemId":"6a30d3fff4b8acc75706245a"}}
+{"level":"info","message":"Submissions fetched successfully","timestamp":"06-16-2026 12:58:43","correlationId":"71b2eb2f-8bb6-4476-aa3a-0f6b11438fbf","data":{"problemId":"6a30d3fff4b8acc75706245a"}}
+{"level":"info","message":"Deleting submission by id","timestamp":"06-16-2026 13:00:19","correlationId":"7e86d5c2-b978-4d2b-827c-6140d42a720e","data":{"submissionId":"6a30f49867a193298066a8cc"}}
+{"level":"info","message":"Submission deleted successfully","timestamp":"06-16-2026 13:00:19","correlationId":"7e86d5c2-b978-4d2b-827c-6140d42a720e","data":{"submissionId":"6a30f49867a193298066a8cc"}}
+{"level":"info","message":"Fetching submission by id","timestamp":"06-16-2026 13:00:28","correlationId":"31d73ba6-c9d2-4a40-b55e-e7639bc1f9f5","data":{"submissionId":"6a30f49867a193298066a8cc"}}
+{"level":"error","message":"Error fetching submission by id","timestamp":"06-16-2026 13:00:28","correlationId":"31d73ba6-c9d2-4a40-b55e-e7639bc1f9f5","data":{"error":{"statusCode":404,"message":"Submission with id 6a30f49867a193298066a8ccNot found","name":"NotFoundError"}}}
+{"level":"error","message":"Error occurred: Submission with id 6a30f49867a193298066a8ccNot found","timestamp":"06-16-2026 13:00:28","correlationId":"31d73ba6-c9d2-4a40-b55e-e7639bc1f9f5","data":{}}
+{"level":"info","message":"Fetching submissions by problem id","timestamp":"06-16-2026 13:00:43","correlationId":"7ce7039c-e956-4919-9317-7d7418f40766","data":{"problemId":"6a30d3fff4b8acc75706245a"}}
+{"level":"error","message":"Error fetching submissions by problem id","timestamp":"06-16-2026 13:00:43","correlationId":"7ce7039c-e956-4919-9317-7d7418f40766","data":{"error":{"statusCode":404,"message":"No submissions found for problem with id 6a30d3fff4b8acc75706245a","name":"NotFoundError"}}}
+{"level":"error","message":"Error occurred: No submissions found for problem with id 6a30d3fff4b8acc75706245a","timestamp":"06-16-2026 13:00:43","correlationId":"7ce7039c-e956-4919-9317-7d7418f40766","data":{}}
+{"level":"info","message":"Server is running on http://localhost:3001","timestamp":"06-16-2026 13:02:56","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Press Ctrl+C to stop the server.","timestamp":"06-16-2026 13:02:56","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Connected to Redis server","timestamp":"06-16-2026 13:02:56","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Server is running on http://localhost:3001","timestamp":"06-16-2026 13:02:59","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Press Ctrl+C to stop the server.","timestamp":"06-16-2026 13:02:59","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Connected to Redis server","timestamp":"06-16-2026 13:02:59","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Server is running on http://localhost:3001","timestamp":"06-16-2026 13:03:24","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Press Ctrl+C to stop the server.","timestamp":"06-16-2026 13:03:24","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Connected to Redis server","timestamp":"06-16-2026 13:03:24","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Server is running on http://localhost:3001","timestamp":"06-16-2026 13:03:29","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Press Ctrl+C to stop the server.","timestamp":"06-16-2026 13:03:29","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Connected to Redis server","timestamp":"06-16-2026 13:03:29","correlationId":"Invalid unknown-error-while-creating-correlation-id ","data":{}}
+{"level":"info","message":"Validating request body","timestamp":"06-16-2026 13:10:21","correlationId":"a025ab50-6700-4905-ba26-04210f152b0f","data":{}}
+{"level":"info","message":"Request body is valid","timestamp":"06-16-2026 13:10:21","correlationId":"a025ab50-6700-4905-ba26-04210f152b0f","data":{}}
+{"level":"info","message":"Creating submission","timestamp":"06-16-2026 13:10:21","correlationId":"a025ab50-6700-4905-ba26-04210f152b0f","data":{}}
+{"level":"info","message":"Job is waiting in submission queue","timestamp":"06-16-2026 13:10:21","correlationId":"a025ab50-6700-4905-ba26-04210f152b0f","data":{}}
+{"level":"info","message":"Added submission job to queue with id 2 for submissionId 6a30fde54a7cd7f58c298ccb","timestamp":"06-16-2026 13:10:21","correlationId":"a025ab50-6700-4905-ba26-04210f152b0f","data":{}}
+{"level":"info","message":"Submission Job added with Job Id 2","timestamp":"06-16-2026 13:10:21","correlationId":"a025ab50-6700-4905-ba26-04210f152b0f","data":{}}
+{"level":"info","message":"Submission created successfully","timestamp":"06-16-2026 13:10:21","correlationId":"a025ab50-6700-4905-ba26-04210f152b0f","data":{"submissionId":"6a30fde54a7cd7f58c298ccb"}}
