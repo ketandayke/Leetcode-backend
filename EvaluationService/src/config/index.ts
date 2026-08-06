@@ -2,7 +2,8 @@
 import dotenv from 'dotenv';
 
 type ServerConfig = {
-    PORT: number
+    PORT: number,
+    SUBMISSION_SERVICE_URL:string
 }
 
 function loadEnv() {
@@ -13,5 +14,6 @@ function loadEnv() {
 loadEnv();
 
 export const serverConfig: ServerConfig = {
-    PORT: Number(process.env.PORT) || 3001
+    PORT: Number(process.env.PORT) || 3001,
+    SUBMISSION_SERVICE_URL: process.env.SUBMISSION_SERVICE_URL || "http://localhost:3002"
 };

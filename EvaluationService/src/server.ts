@@ -50,50 +50,48 @@ process.on('SIGINT', async () => {
     process.exit(0);
 });
 
- async function testPyThonCode() {
-        const pythonCode = `
-    import time
-    i = 0
-    while True:
-        i += 1
-        print(i)
-        time.sleep(1)
+async function testPyThonCode() {
+    logger.info("--- STARTING PYTHON CONTAINER TEST ---");
+    const pythonCode = `
+import time
+print("Python script starting...")
+time.sleep(1)
+print("Hello from Python Docker Sandbox!")
+    `;
     
-    print("Bye")
-        `;
-        // 1. Take the python code and dump in a file and run the python file in the container
-        
-        await runCode({
-            code: pythonCode,
-            language: "python",
-            timeout: 3000,
-            imageName: PYTHON_IMAGE,
-            input:""
-        });
-    }
-    
-    async function testCppCode() {
-        const cppCode = `
-    #include<iostream>
-    
-    int main() {
-        // std::cout<<"Hello world"<<std::endl;
-        int n;
-        std::cin>>n;
-    
-        for(int i = 0; i < n; i++) {
-            std::cout<<i<<std::endl;
-        }
-    
-        return 0;
-    }
-        
-    `
-        await runCode({
-            code: cppCode,
-            language: "cpp",
-            timeout: 1000,
-            imageName: CPP_IMAGE,
-            input: "6"
-        })
-    }
+    const result = await runCode({
+        code: pythonCode,
+        language: "python" as any,
+        timeout: 3000,
+        imageName: PYTHON_IMAGE,
+        input: ""
+    });
+
+    logger.info("Python Execution Result:", result);
+}
+
+async function testCppCode() {
+    logger.info("--- STARTING C++ CONTAINER TEST ---");
+    const cppCode = `
+#include<iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    cout << "Input received: " << n << endl;
+    cout << "Double value is: " << (n * 2) << endl;
+    return 0;
+}
+    `;
+
+    const result = await runCode({
+        code: cppCode,
+        language: "cpp" as any,
+        timeout: 3000,
+        imageName: CPP_IMAGE,
+        input: "21" // Should output 42
+    });
+
+    logger.info("C++ Execution Result:", result);
+}

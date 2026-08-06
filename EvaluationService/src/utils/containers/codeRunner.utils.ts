@@ -1,15 +1,19 @@
 import { InternalServerError } from "../errors/app.error";
 import { commands } from "./commands.utils";
 import { createNewDockerContainer } from "./createContainer.utils";
-
-const allowListedLanguage = ["python", "cpp"];
-
+import logger from "../../config/logger.config";
+const allowListedLanguage = ["python", "cpp","java"];
+export enum SubmissionLanguage{
+    CPP="cpp",
+    JAVA="java",
+    PYTHON="python"
+}
 export interface RunCodeOptions {
     code: string,
-    language: "python"| "cpp",
+    language: SubmissionLanguage,
     timeout: number,
     imageName: string,
-    input: string
+    input: string,
 }
 
 export async function runCode(options: RunCodeOptions) {
@@ -19,6 +23,11 @@ export async function runCode(options: RunCodeOptions) {
     if(!allowListedLanguage.includes(language)) {
         throw new InternalServerError(`Invalid language: ${language}`);
     }
+    // Type-safe lookup using Enum
+    const commandGenerator = commands[language];
+    if (!commandGenerator) {
+        throw new InternalServerError(`Unsupported language provided: ${language}`);
+    }
 
     const container = await createNewDockerContainer({
         imageName: imageName,
@@ -27,16 +36,28 @@ export async function runCode(options: RunCodeOptions) {
     });
 
     let isTimeLimitExceeded = false;
-    const timeLimitExceededTimeout = setTimeout(() => {
-        console.log("Time limit exceeded");
+
+    const timeLimitExceededTimeout = setTimeout(async () => {
+        logger.warn("Time limit exceeded, attempting to terminate container...");
         isTimeLimitExceeded = true;
-        container?.kill();
+        try {
+            // Safe kill: catch 409 errors if the container stopped right before the timeout fired
+            await container?.kill();
+        } catch (err: any) {
+            // Ignore 409 conflict errors (container already stopped)
+            if (err.statusCode !== 409) {
+                logger.error("Error killing container on TLE", err);
+            }
+        }
     }, timeout);
 
     await container?.start();
 
+    // Block until container exits
     const status = await container?.wait();
 
+// ALWAYS clear the timer as soon as container.wait() finishes!
+clearTimeout(timeLimitExceededTimeout);
     if(isTimeLimitExceeded) {
         await container?.remove();
         return {
@@ -71,9 +92,21 @@ export async function runCode(options: RunCodeOptions) {
     }
 }
 
-function processLogs(logs: Buffer | undefined) {
-    return logs?.toString('utf8')
-    .replace(/\x00/g, '') // Remove null bytes
-    .replace(/[\x00-\x09\x0B-\x1F\x7F-\x9F]/g, '') // Remove control characters except \n (0x0A)
-    .trim();
+function processLogs(logs: any): string {
+    if (!logs) return "";
+
+    // Safely check if it's a real Buffer before passing encoding strings
+    let logString = "";
+    if (Buffer.isBuffer(logs)) {
+        logString = logs.toString("utf8");
+    } else if (typeof logs === "string") {
+        logString = logs;
+    } else {
+        logString = String(logs); // Fallback string conversion for numbers/objects
+    }
+
+    return logString
+        .replace(/\x00/g, "") // Remove null bytes
+        .replace(/[\x00-\x09\x0B-\x1F\x7F-\x9F]/g, "") // Remove control characters
+        .trim();
 }
